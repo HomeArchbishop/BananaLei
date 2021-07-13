@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			@font-face { 
+				font-family: "方正风雅楷宋简体";
+				src: url(FZFengYKSJ.ttf);
+			}
+			html,body{height:100%;overflow:hidden;font-family: "方正风雅楷宋简体";}
+			html{
+				-webkit-user-select: none;
+ 				-moz-user-select: none;
+ 				-ms-user-select: none; 
+				user-select: none;
+			}
+			canvas {
+				position: absolute;
+				top:0;
+				left: 0;
+			}
+			.div1 {
+				position: absolute;
+				z-index: 9999;
+				top: 0;
+				right: 0;
+			}
+			.div2 {
+				position: absolute;
+				z-index: 999;
+				top: 0;
+				text-align: center;
+				width: 100%
+			}
+			#tip {
+				color: red;
+				font-size: 100px;
+				font-family: "方正风雅楷宋简体";
+			}
+			.div3 {
+				position: absolute;
+				z-index: 99;
+				top: 40%;
+				text-align: center;
+				width: 100%
+			}
+			#start {
+				font-size: 20px;
+				font-family:Arial, Helvetica, sans-serif;
+			}
+			.div4 {
+				position: absolute;
+				z-index: 99;
+				bottom: 0;
+				text-align: left;
+				width: 10%
+			}
+			#point {
+				font-size: 20px;
+				color: red;
+			}
+			#footer{
+				position: absolute;
+				bottom: 0;
+				right:0;
+				width: 100%;
+				z-index: 800;
+    			font-family: 黑体;
+    			font-size: 12px;
+    			padding-right: 16px;
+				text-align: right;
+			}
+			.链接{
+    			color: #666666;
+			}
+			.图标{
+    			height: 14px;
+    			margin: 2px,0px,0px;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas">Nop</canvas>
+		<div class='div1'>
+			<details>
+				<summary>玩法</summary>
+				PC端（或带键盘的移动端）<br/>
+				使用左右控制<br/>
+				移动端（手机）<br/>
+				按住左半屏左移，右半屏右移
+			</details>
+			<details>
+				<summary>记分说明</summary>
+				奶粉 *826 2%出率<br/>
+				菜油 *1.5 18%出率<br/>
+				香蕉 *1.2 26%出率<br/>
+				开水 *1.1 38%出率<br/>
+				盒子 /2.0 8%出率<br/>
+				井盖 /3.0 4%出率<br/>
+				132 /100 4%出率<br/>
+			</details>
+			<details>
+				<summary>成就说明</summary>
+				一个开水馒头——初饮开水<br/>
+				连续十杯开水——开水馒头之春<br/>
+				累计十根香蕉——香蕉园主<br/>
+				累计三盒奶粉——奶粉世家<br/>
+				累计五个井盖——合理避难<br/>
+				累计五桶菜籽油——油嘴滑舌<br/>
+				累计进盒五次——盒中洞天<br/>
+			</details>
+		</div>
+		<div class='div2'>
+			<h1 id='tip'></h1>
+		</div>
+		<div class='div3'>
+			<span id='start' onclick="Game_begin();this.style.display='none';">|START|</span>
+		</div>
+		<div class='div4'>
+			<span id="point">+0</span>
+		</div>
+		<div id='footer'>
+			<p>
+                <p>V1.0.0</p>
+				<p>香蕉园中香蕉树，香蕉树下雷绍武。</p>
+				<img src="https://gitee.com/HomeArchbishop/Resource_Base/raw/master/gitee_logo.ico" class="图标">
+				<span id="at" style="font-family: 圆体;font-size: 13px;margin-right: -5px">@</span>
+				<a class="链接" href="https://gitee.com/HomeArchbishop">拆家大主教</a>
+				<br/>
+				<a class="链接" href="https://gitee.com/HomeArchbishop/BananaLei">git源码</a>
+			</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/img_data.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/Sleep.js"></script>
+	<script type="text/javascript" src="js/powder.js"></script>
+	<script type="text/javascript" src="js/setting.js"></script>
+	<script type="text/javascript" src="js/plugin.js"></script>
+</html>
