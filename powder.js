@@ -28,12 +28,12 @@
             _run_left: this.getImg(_run_left)
         },
         object_deploy: [
-            ["powder","_powder","good",826,826,1,1],
+            ["powder","_powder","good",8.26,8.26,1,1],
             ["oil","_oil","good",1.5,1.5,9,9],
             ["banana","_banana","good",1.2,1.2,13,13],
-            ["water","_water","good",1.1,1.1,19,19],
-            ["box","_box","harm",0.5,0.5,4,4],
-            ["manhole","_manhole","harm",0.33333,0.33333,3,3],
+            ["water","_water","good",1.1,1.1,18,18],
+            ["box","_box","harm",0.2,0.2,5,5],
+            ["manhole","_manhole","harm",0.05,0.05,3,3],
             ["132","_132","harm",0.01,0.01,2,2]
         ],
         psb_arr: [],
