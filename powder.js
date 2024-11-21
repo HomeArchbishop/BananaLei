@@ -280,8 +280,8 @@ Game.prototype.update_game = function() {
             && this.player.loc.y <= object.loc.y + 70
         ) {
             let ori_life = this.player.life;
-            //132攻击为开根号
-            if(object.name == '132') {
+            // 大于10000时，132攻击为开根号
+            if (object.name == '132' && this.player.life > 10000) {
                 this.player.life = Math.floor(Math.sqrt(this.player.life))
             } else {
                 this.player.life = object.type !== 'harm'? Math.ceil(this.player.life * object.point): Math.floor(this.player.life * object.point);
