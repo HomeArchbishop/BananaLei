@@ -60,6 +60,7 @@
         name: playername,
         speed: 13.2,
         life: 3,
+        max_life: 3,
         point: 0,
         miss: 0,
         acquire_list: ["begin"],
@@ -290,6 +291,7 @@ Game.prototype.update_game = function() {
             if(this.player.life - ori_life > 0) {
                 point_area.innerHTML = "\+";
                 point_area.innerHTML += this.player.life - ori_life;
+                this.player.max_life = this.player.life
             } else {
                 point_area.innerHTML = this.player.life - ori_life;
             }
@@ -397,6 +399,7 @@ Game.prototype.draw_game = function() {
     this.ctx.fillStyle = 'black';
     this.ctx.font = "30px 宋体"
     this.ctx.fillText("运动力：" + this.player.life, 10, 30);
+    this.ctx.fillText("当前最大运动力：" + this.player.max_life, 10, 70);
     if(this.player.achievement.length) {
         this.ctx.font = "15px 宋体"
         this.ctx.fillText("成就：", 10, 60);
@@ -424,7 +427,9 @@ Game.prototype.draw = function() {
         this.ctx.fillRect(this.width / 2 - 200,this.height / 2 -100, 400, 200);    
         this.ctx.fillStyle = "white";
         this.ctx.font = "40px 宋体"
-        this.ctx.fillText("你失去了运动力，", this.width / 2 - 150,this.height / 2 - 20);    
+        this.ctx.fillText("你失去了运动力，", this.width / 2 - 150,this.height / 2 - 70); 
+        this.ctx.fillText("最大运动力：" + this.player.max_life, this.width / 2 - 150,this.height / 2 - 20);
         this.ctx.fillText("刷新再次投喂吧！", this.width / 2 - 150,this.height / 2 + 30);    
     }
+    
 };
