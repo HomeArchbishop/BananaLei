@@ -291,7 +291,9 @@ Game.prototype.update_game = function() {
             if(this.player.life - ori_life > 0) {
                 point_area.innerHTML = "\+";
                 point_area.innerHTML += this.player.life - ori_life;
-                this.player.max_life = this.player.life
+                if (this.player.life > this.player.max_life) {
+                   this.player.max_life = this.player.life
+                }
             } else {
                 point_area.innerHTML = this.player.life - ori_life;
             }
