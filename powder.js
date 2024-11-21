@@ -426,12 +426,14 @@ Game.prototype.draw = function() {
     this.draw_game();
     if(this.config.dead) {
         this.ctx.fillStyle = "rgba(0,0,0,.7)"
-        this.ctx.fillRect(this.width / 2 - 200,this.height / 2 -100, 400, 200);    
+        this.ctx.fillRect(this.width / 2 - 300,this.height / 2 -100, 600, 200);    
         this.ctx.fillStyle = "white";
         this.ctx.font = "40px 宋体"
-        this.ctx.fillText("你失去了运动力，", this.width / 2 - 150,this.height / 2 - 50); 
-        this.ctx.fillText("最大运动力：" + this.player.max_life, this.width / 2 - 150,this.height / 2);
-        this.ctx.fillText("刷新再次投喂吧！", this.width / 2 - 150,this.height / 2 + 50);    
+        this.ctx.fillText("你失去了运动力，", this.width / 2 - 250,this.height / 2 - 50); 
+        this.ctx.font = "20px 宋体"
+        this.ctx.fillText("最大运动力：" + this.player.max_life, this.width / 2 - 250, this.height / 2);
+        this.ctx.font = "40px 宋体"
+        this.ctx.fillText("刷新再次投喂吧！", this.width / 2 - 250,this.height / 2 + 30);    
     }
     
 };
