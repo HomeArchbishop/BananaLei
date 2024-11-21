@@ -402,9 +402,9 @@ Game.prototype.draw_game = function() {
     this.ctx.fillText("当前最大运动力：" + this.player.max_life, 10, 70);
     if(this.player.achievement.length) {
         this.ctx.font = "15px 宋体"
-        this.ctx.fillText("成就：", 10, 60);
+        this.ctx.fillText("成就：", 10, 110);
         for(var index = 0;index < this.player.achievement.length;index++){
-            this.ctx.fillText(this.player.achievement[index], 10, 75 + 15 * index);    
+            this.ctx.fillText(this.player.achievement[index], 10, 125 + 15 * index);    
         }
     }
 };
