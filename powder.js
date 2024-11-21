@@ -280,11 +280,12 @@ Game.prototype.update_game = function() {
             && this.player.loc.y <= object.loc.y + 70
         ) {
             let ori_life = this.player.life;
-            //超过10^25分数，132攻击加大成指数减半
-            if(object.name == '132' && Math.log10(this.player.life) > 25) {
-                object.point = 0.1 ** (Math.log10(this.player.life) / 2)
+            //132攻击为开根号
+            if(object.name == '132') {
+                this.player.life = Math.sqrt(this.player.life)
+            } else {
+                this.player.life = object.type !== 'harm'? Math.ceil(this.player.life * object.point): Math.floor(this.player.life * object.point);
             }
-            this.player.life = object.type !== 'harm'? Math.ceil(this.player.life * object.point): Math.floor(this.player.life * object.point);
             this.player.acquire_list.push(object.name);
             if(this.player.life - ori_life > 0) {
                 point_area.innerHTML = "\+";
