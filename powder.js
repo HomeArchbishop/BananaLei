@@ -28,12 +28,12 @@
             _run_left: this.getImg(_run_left)
         },
         object_deploy: [
-            ["powder","_powder","good",826,826,1,1],
+            ["powder","_powder","good",8.26,8.26,1,1],
             ["oil","_oil","good",1.5,1.5,9,9],
             ["banana","_banana","good",1.2,1.2,13,13],
-            ["water","_water","good",1.1,1.1,19,19],
-            ["box","_box","harm",0.5,0.5,4,4],
-            ["manhole","_manhole","harm",0.33333,0.33333,3,3],
+            ["water","_water","good",1.1,1.1,18,18],
+            ["box","_box","harm",0.2,0.2,5,5],
+            ["manhole","_manhole","harm",0.05,0.05,3,3],
             ["132","_132","harm",0.01,0.01,2,2]
         ],
         psb_arr: [],
@@ -60,6 +60,7 @@
         name: playername,
         speed: 13.2,
         life: 3,
+        max_life: 3,
         point: 0,
         miss: 0,
         acquire_list: ["begin"],
@@ -280,15 +281,19 @@ Game.prototype.update_game = function() {
             && this.player.loc.y <= object.loc.y + 70
         ) {
             let ori_life = this.player.life;
-            //超过10^25分数，132攻击加大成指数减半
-            if(object.name == '132' && Math.log10(this.player.life) > 25) {
-                object.point = 0.1 ** (Math.log10(this.player.life) / 2)
+            // 大于10000时，132攻击为开根号
+            if (object.name == '132' && this.player.life > 10000) {
+                this.player.life = Math.floor(Math.sqrt(this.player.life))
+            } else {
+                this.player.life = object.type !== 'harm'? Math.ceil(this.player.life * object.point): Math.floor(this.player.life * object.point);
             }
-            this.player.life = object.type !== 'harm'? Math.ceil(this.player.life * object.point): Math.floor(this.player.life * object.point);
             this.player.acquire_list.push(object.name);
             if(this.player.life - ori_life > 0) {
                 point_area.innerHTML = "\+";
                 point_area.innerHTML += this.player.life - ori_life;
+                if (this.player.life > this.player.max_life) {
+                   this.player.max_life = this.player.life
+                }
             } else {
                 point_area.innerHTML = this.player.life - ori_life;
             }
@@ -396,11 +401,12 @@ Game.prototype.draw_game = function() {
     this.ctx.fillStyle = 'black';
     this.ctx.font = "30px 宋体"
     this.ctx.fillText("运动力：" + this.player.life, 10, 30);
+    this.ctx.fillText("当前最大运动力：" + this.player.max_life, 10, 70);
     if(this.player.achievement.length) {
         this.ctx.font = "15px 宋体"
-        this.ctx.fillText("成就：", 10, 60);
+        this.ctx.fillText("成就：", 10, 110);
         for(var index = 0;index < this.player.achievement.length;index++){
-            this.ctx.fillText(this.player.achievement[index], 10, 75 + 15 * index);    
+            this.ctx.fillText(this.player.achievement[index], 10, 125 + 15 * index);    
         }
     }
 };
@@ -420,10 +426,13 @@ Game.prototype.draw = function() {
     this.draw_game();
     if(this.config.dead) {
         this.ctx.fillStyle = "rgba(0,0,0,.7)"
-        this.ctx.fillRect(this.width / 2 - 200,this.height / 2 -100, 400, 200);    
+        this.ctx.fillRect(this.width / 2 - 300,this.height / 2 -100, 600, 200);    
         this.ctx.fillStyle = "white";
         this.ctx.font = "40px 宋体"
-        this.ctx.fillText("你失去了运动力，", this.width / 2 - 150,this.height / 2 - 20);    
-        this.ctx.fillText("刷新再次投喂吧！", this.width / 2 - 150,this.height / 2 + 30);    
+        this.ctx.fillText("你失去了运动力，", this.width / 2 - 250,this.height / 2 - 50); 
+        this.ctx.fillText("刷新再次投喂吧！", this.width / 2 - 250,this.height / 2);
+        this.ctx.font = "20px 宋体"
+        this.ctx.fillText("最大运动力：" + this.player.max_life, this.width / 2 - 250, this.height / 2 + 40);
     }
+    
 };
